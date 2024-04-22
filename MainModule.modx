@@ -1,0 +1,222 @@
+MODULE MainModule
+    !Caja = 18.5cmm X 3.5cm
+    
+	PERS tooldata gripperIvan := [TRUE,[[3.17064,-2.57344,215.554],[1,0,0,0]],[1.6,[0.9,0,63.5],[1,0,0,0],0.011,0.012,0.01]];
+	PERS wobjdata wobjIzquierda := [FALSE,TRUE,"",[[641.443,359.771,75.0655],[0.707111,2.24798E-05,-1.89234E-05,-0.707102]],[[0,0,0],[1,0,0,0]]];
+	PERS wobjdata wobjDerecha := [FALSE,TRUE,"",[[615.612,-660.879,107.688],[7.12328E-05,-0.0218209,-0.999762,-3.46191E-05]],[[0,0,0],[1,0,0,0]]];
+    
+    !HOME
+	CONST robtarget homeCr := [[867.21,17.59,709.44],[0.0158114,-0.0347332,0.999225,-0.00958957],[0,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !Para agarrar caja
+	CONST robtarget acercamiento := [[780.90,560.28,169.32],[0.00133958,0.735779,-0.677151,-0.00973216],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget bajar := [[780.87,560.28,103.51],[0.00135466,0.735812,-0.677114,-0.00975317],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !---CAMA 1
+    
+    !Para dejar caja 1
+	CONST robtarget acercarDer := [[794.77,-376.17,272.41],[0.0159481,-0.0347941,0.99922,-0.00970607],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget bajarDejar := [[794.63,-376.13,106.45],[0.0157791,-0.0346898,0.999227,-0.00961924],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !Para dejar caja 2
+    CONST robtarget acercarPos2 := [[794.77,-464.21,272.38],[0.0159436,-0.0347285,0.999223,-0.00969995],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget bajarDejar2 := [[794.74,-464.19,107.25],[0.015917,-0.0347236,0.999223,-0.00968153],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !Para dejar caja 3
+    CONST robtarget acercarPos3 := [[794.77,-552.25,272.35],[0.0159436,-0.0347285,0.999223,-0.00969995],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget bajarDejar3 := [[794.74,-552.25,107.25],[0.015917,-0.0347236,0.999223,-0.00968153],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !---- CAMA 2 ----------
+    
+    !Posicion caja 1 - Cama 2
+    CONST robtarget bajarDejar1c2 := [[794.63,-376.13,138.6],[0.0159136,-0.0347978,0.999221,-0.00968609],[-1,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !Posicion caja 2 - cama 2
+    CONST robtarget bajarDejar2c2 := [[794.74,-464.19,139.4],[0.015917,-0.0347236,0.999223,-0.00968153],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !Posicion caja 3 -Cama 2
+    CONST robtarget bajarDejar3c2 := [[794.74,-552.25,139.4],[0.015917,-0.0347236,0.999223,-0.00968153],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget subirSalir := [[780.92,560.29,226.96],[0.00132625,0.73579,-0.677139,-0.00973382],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !---- CAMA 3 (SOLO ARREGLO 2)--------------
+     !Posicion caja 1 - Cama 2
+    CONST robtarget acercarPos1c2Arreglo2 := [[838.81,-469.42,255.39],[0.0181458,0.678616,0.734257,0.00435325],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget bajarDejar1c2Arreglo2 := [[838.80,-469.42,137.57],[0.0181243,0.678626,0.734247,0.00434729],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	
+    !Posicion caja 2 - Cama 2
+    CONST robtarget acercarPos2c2Arreglo2 := [[739.79,-469.42,255.41],[0.0181635,0.678599,0.734272,0.00436605],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget bajarDejar2c2Arreglo2 := [[739.77,-469.40,142.20],[0.0181358,0.678613,0.734259,0.00436193],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    !Posicion caja 1 - Cama 3 (Unicamente arreglo 2)
+    CONST robtarget acercarPos1Cama3Arreglo2 := [[794.73,-464.18,171.70],[0.0158985,-0.0347212,0.999224,-0.00966919],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget bajarDejar2Cama3Arreglo2 := [[794.76,-464.20,170.23],[0.0159212,-0.0347569,0.999222,-0.00967849],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+PROC main()
+    seleccionarArreglo;
+ENDPROC
+
+PROC Caja_red()
+    !-------------------------CAMA 1-------------------------------------
+    !DEJA CAJA 1
+    tomarCaja;
+    MoveJ acercarDer, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    tomarCaja;
+    
+    !DEJA CAJA 2
+    MoveJ acercarPos2, v500, z50, gripperIvan;
+    !WaitTime 2;
+    MoveL bajarDejar2, v500, z20, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    tomarCaja;
+    
+    !DEJA CAJA 3
+    MoveJ acercarPos3, v500, z50, gripperIvan;
+    !WaitTime 2;
+    MoveL bajarDejar3, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    tomarCaja;
+    
+    !-----------------CAMA 2-------------------------------------
+    ! Dejar caja 1
+    MoveJ acercarDer, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar1c2, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    tomarCaja;
+    
+    ! Dejar caja 2
+    MoveJ acercarPos2, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar2c2, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    tomarCaja;
+    
+    ! Dejar caja 3
+    MoveJ acercarPos3, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar3c2, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    preguntaReinicio;
+    
+ENDPROC
+
+PROC Caja_red2()
+     !-------------------------CAMA 1-------------------------------------
+    !DEJA CAJA 1
+    tomarCaja;
+    MoveJ acercarDer, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    tomarCaja;
+    
+    !DEJA CAJA 2
+    MoveJ acercarPos2, v500, z50, gripperIvan;
+    !WaitTime 2;
+    MoveL bajarDejar2, v500, z20, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    tomarCaja;
+    
+    !DEJA CAJA 3
+    MoveJ acercarPos3, v500, z50, gripperIvan;
+    !WaitTime 2;
+    MoveL bajarDejar3, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    tomarCaja;
+    
+    !-----------------CAMA 2-------------------------------------
+    ! Dejar caja 1
+    MoveJ acercarPos1c2Arreglo2, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar1c2Arreglo2, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    tomarCaja;
+    
+    ! Dejar caja 2
+    MoveJ acercarPos2c2Arreglo2, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar2c2Arreglo2, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    tomarCaja;
+    
+    !----------------------------CAMA 3------------------------------------
+    ! Dejar caja 3
+    MoveJ acercarPos2, v500, z50, gripperIvan; 
+    !WaitTime 2;
+    MoveL bajarDejar2Cama3Arreglo2, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+    Reset ABB_Scalable_IO_0_DO2;
+    WaitTime 1;
+    MoveJ homeCr, v500, z50, gripperIvan;
+    preguntaReinicio;
+ENDPROC
+
+PROC tomarCaja()
+    MoveJ homeCr,v500,z50,gripperIvan;
+    MoveJ acercamiento, v500, z50, gripperIvan;
+    !WaitTime 2;
+    MoveL bajar, v500, z50, gripperIvan;
+    WaitRob \ZeroSpeed;
+	Set ABB_Scalable_IO_0_DO2; 
+    WaitTime 1;
+    MoveL subirSalir, v500, z50, gripperIvan;
+ENDPROC
+
+PROC seleccionarArreglo()
+     TPReadFK reg1, "Selecciona el acomodo del paletizado", stEmpty, stEmpty, stEmpty, "Acomodo 1", "Acomodo 2";
+    
+    IF reg1=4 THEN 
+        Caja_red;
+        TPWrite "Paletizando acomodo 1";
+    ELSE
+        Caja_red2;
+        TPWrite "Paletizando acomodo 2";
+    ENDIF
+ENDPROC
+
+PROC preguntaReinicio()
+    TPReadFK reg1, "¿Empezar de nuevo el paletizado?", stEmpty, stEmpty, stEmpty, "Yes", "No";
+    
+    IF reg1=4 THEN 
+        main;
+        TPWrite "Reiniciando paletizado";
+    ELSE
+        Stop;
+        TPWrite "Paletizado finalizado";
+    ENDIF
+ENDPROC
+
+
+ENDMODULE
